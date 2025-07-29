@@ -1,28 +1,16 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import ProductList from "./components/ProductList";
-import ProductDetail from "./components/ProductDetail";
-import Cart from "./components/Cart";
+import Home from "./pages/Home";
+import Welcome from "./pages/Welcome";
+import ProductDetail from "./pages/product/ProductDetail";
+import Cart from "./pages/cart/Cart";
+import Navbar from "./components/Navbar";
 import { CartProvider } from "./context/CartContext";
 
 import { useCart } from "./context/CartContext";
 
 // Main App component with routing and navigation
-
-function Navbar() {
-  const { cart } = useCart();
-  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  return (
-    <nav>
-      <Link to="/products">🛒 Products</Link>
-      <Link to="/cart" style={{ position: "relative" }}>
-        🧺 Cart
-        {totalCount > 0 && <span className="cart-badge">{totalCount}</span>}
-      </Link>
-    </nav>
-  );
-}
 
 function App() {
   return (
@@ -30,14 +18,14 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          {/* Product list page */}
-          <Route path="/products" element={<ProductList />} />
-          {/* Product detail page */}
-          <Route path="/products/:id" element={<ProductDetail />} />
-          {/* Cart page */}
+          {/* Öncelik: Anasayfa */}
+          <Route path="/" element={<Welcome />} />
+          {/* Ürünler listesi */}
+          <Route path="/product" element={<Home />} />
+          {/* Ürün detay */}
+          <Route path="/product/:id" element={<ProductDetail />} />
+          {/* Sepet */}
           <Route path="/cart" element={<Cart />} />
-          {/* Redirect root to products */}
-          <Route path="/" element={<ProductList />} />
         </Routes>
       </Router>
     </CartProvider>

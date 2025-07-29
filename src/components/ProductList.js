@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import ProductCard from "./ProductCard";
 
 // ProductList fetches and displays products from FakeStoreAPI
 function ProductList() {
@@ -23,22 +23,27 @@ function ProductList() {
   return (
     <div className="container product-bg">
       <h2>Product List</h2>
-      <ul className="product-list">
+      <div className="product-list-responsive">
         {products.map((product) => (
-          <li className="product-card" key={product.id}>
-            <img
-              src={product.image}
-              alt={product.title}
-              className="product-img"
-            />
-            <h3>
-              <Link to={`/products/${product.id}`}>{product.title}</Link>
-            </h3>
-            <div className="price">Price: ${product.price}</div>
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </li>
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
         ))}
-      </ul>
+      </div>
+      <style>{`
+        .product-list-responsive {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1rem;
+        }
+        @media (max-width: 768px) {
+          .product-list-responsive {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </div>
   );
 }
