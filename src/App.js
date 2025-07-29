@@ -18,11 +18,11 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          {/* Öncelik: Anasayfa */}
+          {/* Home priority */}
           <Route path="/" element={<Welcome />} />
-          {/* Ürünler listesi */}
+          {/* Product list */}
           <Route path="/product" element={<Home />} />
-          {/* Ürün detay */}
+          {/* Product detail */}
           <Route path="/product/:id" element={<ProductDetail />} />
           {/* Sepet */}
           <Route path="/cart" element={<Cart />} />
