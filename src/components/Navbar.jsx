@@ -1,9 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const location = useLocation();
+  const { cart } = useCart();
+  // Toplam ürün adedi (miktarlarıyla birlikte)
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <nav>
       <div className="navbar-brand">SoftMarkt</div>
@@ -17,7 +21,10 @@ const Navbar = () => {
           <Link to="/product">Products</Link>
         </li>
         <li className={location.pathname === "/cart" ? "active" : ""}>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart" className="cart-link">
+            Cart
+            <span className="cart-badge">{cartCount}</span>
+          </Link>
         </li>
       </ul>
     </nav>
