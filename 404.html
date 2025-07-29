@@ -6,20 +6,28 @@
     <script>
       // GitHub Pages SPA redirect fix
       // https://github.com/rafgraph/spa-github-pages
-      (function(l) {
+      (function (l) {
         if (l.search) {
           var q = {};
-          l.search.slice(1).split('&').forEach(function(v) {
-            var a = v.split('=');
-            q[a[0]] = a.slice(1).join('=');
-          });
+          l.search
+            .slice(1)
+            .split("&")
+            .forEach(function (v) {
+              var a = v.split("=");
+              q[a[0]] = a.slice(1).join("=");
+            });
           if (q.p !== undefined) {
-            window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + (q.p || '/') + (q.q ? ('?' + q.q) : '') + l.hash
+            window.history.replaceState(
+              null,
+              null,
+              l.pathname.slice(0, -1) +
+                (q.p || "/") +
+                (q.q ? "?" + q.q : "") +
+                l.hash
             );
           }
         }
-      }(window.location));
+      })(window.location);
     </script>
     <title>404 Not Found</title>
   </head>
