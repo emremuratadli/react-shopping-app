@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Welcome.css";
 
 const Welcome = () => (
@@ -19,9 +20,9 @@ const Welcome = () => (
       />
     </div>
     <div className="welcome-actions">
-      <a href="/product" className="shop-btn">
+      <Link to="/product" className="shop-btn">
         Start Shopping
-      </a>
+      </Link>
     </div>
   </div>
 );
